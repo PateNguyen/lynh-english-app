@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lynh Học Tiếng Anh - Hệ Thống 200 Bài Học & Âm Thanh Realtime</title>
+    <title>Lynh Học Tiếng Anh - Dynamic Edition</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
             --primary-color: #6366F1;
@@ -14,7 +13,7 @@
             --accent-color: #F59E0B;
             --bg-color: #F8FAFC;
             --card-bg: #FFFFFF;
-            --text-dark: #0F172A;
+            --text-dark: #1E293B;
             --text-muted: #64748B;
             --border-color: #E2E8F0;
         }
@@ -35,11 +34,10 @@
             min-height: 100vh;
         }
 
-        /* Container mô phỏng Điện thoại di động */
         .phone-container {
             width: 100%;
-            max-width: 440px;
-            height: 880px;
+            max-width: 414px;
+            height: 844px;
             background-color: var(--bg-color);
             border-radius: 44px;
             box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
@@ -50,11 +48,10 @@
             border: 8px solid #1E293B;
         }
 
-        /* Header */
         .app-header {
             background: linear-gradient(135deg, #4F46E5, #7C3AED);
             color: white;
-            padding: 20px 18px 12px;
+            padding: 20px 20px 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -63,24 +60,19 @@
         }
 
         .app-title {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .user-level-badge {
-            background: rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(8px);
             padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 600;
         }
 
-        /* App Body & Animations */
         .app-body {
             flex: 1;
             overflow-y: auto;
@@ -89,16 +81,15 @@
         }
 
         .section-title {
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-dark);
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 6px;
         }
 
-        /* Level Selector Cards */
         .level-selector {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -109,71 +100,22 @@
         .level-card {
             background: var(--card-bg);
             border: 2px solid var(--border-color);
-            border-radius: 14px;
+            border-radius: 12px;
             padding: 10px 4px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .level-card:hover {
-            transform: translateY(-2px);
+            transition: all 0.2s;
         }
 
         .level-card.active {
             border-color: var(--primary-color);
             background-color: var(--primary-light);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
-            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.15);
         }
 
-        .level-card h4 {
-            font-size: 0.78rem;
-            color: var(--text-dark);
-            font-weight: 700;
-        }
+        .level-card h4 { font-size: 0.8rem; color: var(--text-dark); font-weight: 700; }
+        .level-card p { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
 
-        .level-card p {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        /* Topic Chips */
-        .topic-scroll {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
-            scrollbar-width: none;
-        }
-        .topic-scroll::-webkit-scrollbar { display: none; }
-
-        .topic-chip {
-            white-space: nowrap;
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .topic-chip.active {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
-        }
-
-        /* Skill Cards */
         .skills-grid {
             display: flex;
             flex-direction: column;
@@ -183,28 +125,24 @@
 
         .skill-card {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 12px 14px;
+            border-radius: 14px;
+            padding: 14px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            gap: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
             cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(226, 232, 240, 0.9);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: transform 0.15s;
         }
 
         .skill-card:active { transform: scale(0.98); }
 
         .skill-icon {
-            width: 44px;
-            height: 44px;
+            width: 44px; height: 44px;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.15rem;
-            transition: transform 0.3s;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
         }
 
         .skill-reading .skill-icon { background: #FEF3C7; color: #D97706; }
@@ -213,13 +151,12 @@
         .skill-call .skill-icon { background: #FCE7F3; color: #DB2777; }
 
         .skill-info { flex: 1; }
-        .skill-info h3 { font-size: 0.88rem; color: var(--text-dark); font-weight: 700; }
+        .skill-info h3 { font-size: 0.9rem; color: var(--text-dark); font-weight: 700; }
         .skill-info p { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
 
-        /* Screens */
         .screen {
             display: none;
-            animation: fadeIn 0.3s ease-in-out;
+            animation: fadeIn 0.25s ease-in-out;
         }
 
         .screen.active { display: block; }
@@ -229,1439 +166,72 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Interactive Box Component */
         .interactive-box {
             background: white;
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 16px;
             margin-bottom: 14px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
             border: 1px solid var(--border-color);
         }
 
-        .audio-player {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--primary-light);
-            padding: 10px 12px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-        }
-
-        .play-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s;
-        }
-
-        .play-btn:active { transform: scale(0.9); }
-
-        .speed-btn {
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 4px 8px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .clickable-word {
-            cursor: pointer;
-            padding: 2px 6px;
-            border-radius: 6px;
-            font-weight: 600;
-            color: var(--primary-color);
-            background: var(--primary-light);
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            margin: 2px 1px;
-            font-size: 0.85rem;
-        }
-
-        .clickable-word:hover { background-color: #C7D2FE; }
-
-        .ai-feedback {
-            background: #F0FDF4;
-            border-left: 4px solid var(--secondary-color);
-            padding: 12px 14px;
-            border-radius: 0 12px 12px 0;
-            margin-top: 12px;
-            font-size: 0.8rem;
-            animation: slideUp 0.25s ease;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* AI Voice Call Screen */
-        .call-screen {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at center, #1E1B4B 0%, #0F172A 100%);
-            color: white;
-            z-index: 100;
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 36px 20px 24px;
-        }
-
-        .call-screen.active { display: flex; }
-
-        .ai-avatar-container {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 20px auto 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .ai-wave {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: rgba(99, 102, 241, 0.3);
-            animation: soundWave 2s infinite ease-out;
-            display: none;
-        }
-
-        .ai-avatar-container.speaking .ai-wave { display: block; }
-        .ai-wave:nth-child(2) { animation-delay: 0.6s; }
-        .ai-wave:nth-child(3) { animation-delay: 1.2s; }
-
-        @keyframes soundWave {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.6); opacity: 0; }
-        }
-
-        .ai-avatar-core {
-            position: relative;
-            width: 85px;
-            height: 85px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #6366F1, #EC4899);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            box-shadow: 0 0 25px rgba(236, 72, 153, 0.5);
-            z-index: 2;
-        }
-
-        .transcript-box {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            padding: 14px;
-            border-radius: 16px;
-            font-size: 0.82rem;
-            max-height: 180px;
-            overflow-y: auto;
-            margin-bottom: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
+        .lesson-list {
             display: flex;
             flex-direction: column;
             gap: 8px;
-        }
-
-        .call-controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 5px;
-        }
-
-        .btn-call-action {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            border: none;
-            color: white;
-            font-size: 1.15rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
-        .btn-end { background: #EF4444; }
-        .btn-hint { background: #F59E0B; }
-        .btn-mic { background: #10B981; }
-
-        /* Navigation Bar */
-        .nav-bar {
-            background: white;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0 12px;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 0.68rem;
-            color: var(--text-muted);
-            cursor: pointer;
-        }
-
-        .nav-item.active { color: var(--primary-color); font-weight: 700; }
-        .nav-item i { font-size: 1.2rem; margin-bottom: 2px; }
-
-        /* Lesson Grid List (200 Lessons) */
-        .lesson-list-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            max-height: 380px;
+            max-height: 520px;
             overflow-y: auto;
             padding-right: 4px;
         }
 
-        .lesson-card-item {
+        .lesson-item {
             background: white;
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 10px 12px;
-            cursor: pointer;
+            padding: 12px 14px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            transition: all 0.2s;
-        }
-
-        .lesson-card-item:hover {
-            border-color: var(--primary-color);
-            background: var(--primary-light);
-        }
-
-        .lesson-card-item.locked {
-            opacity: 0.6;
-            background: #F1F5F9;
-            cursor: not-allowed;
-        }
-
-        .difficulty-pill {
-            font-size: 0.62rem;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-weight: 700;
-        }
-        .diff-easy { background: #E0F2FE; color: #0369A1; }
-        .diff-mid { background: #FEF3C7; color: #B45309; }
-        .diff-hard { background: #FEE2E2; color: #B91C1C; }
-
-        .mcq-option {
-            background: #F8FAFC;
-            border: 1px solid var(--border-color);
-            padding: 10px 12px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-dark);
             cursor: pointer;
             transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .mcq-option:hover {
+        .lesson-item:hover {
             border-color: var(--primary-color);
             background: var(--primary-light);
         }
 
-        .mcq-option.selected-correct {
-            background: #DCFCE7;
-            border-color: #10B981;
-            color: #15803D;
+        .lesson-item h4 { font-size: 0.85rem; color: var(--text-dark); }
+        .lesson-item p { font-size: 0.7rem; color: var(--text-muted); }
+
+        .hint-banner {
+            background: #FEF3C7;
+            border: 1px solid #F59E0B;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 0.78rem;
+            color: #92400E;
+            margin-bottom: 12px;
+            display: none;
+            animation: slideDown 0.3s ease;
         }
 
-        .mcq-option.selected-wrong {
-            background: #FEE2E2;
-            border-color: #EF4444;
-            color: #B91C1C;
-        }
-    </style>
-</head>
-<body>
-
-<div class="phone-container">
-    <!-- Header -->
-    <div class="app-header">
-        <div class="app-title"><i class="fa-solid fa-graduation-cap"></i> Lynh English 200</div>
-        <div class="flex items-center gap-2">
-            <button id="audio-toggle-btn" onclick="toggleAudioEngine()" class="bg-white/20 hover:bg-white/30 text-white text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5 transition">
-                <i class="fa-solid fa-volume-high" id="audio-icon"></i> <span id="audio-status">Bật Âm Thanh</span>
-            </button>
-            <div class="user-level-badge" id="current-level-tag">3.5 - 6.5 IELTS</div>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="app-body">
-
-        <!-- DASHBOARD -->
-        <div id="screen-dashboard" class="screen active">
-            <div class="section-title">
-                <span><i class="fa-solid fa-layer-group" style="color:var(--primary-color)"></i> Trình Độ Curriculum (200 Bài/Bậc)</span>
-            </div>
-            <div class="level-selector">
-                <div class="level-card" onclick="selectLevel('basic', '< 3.0 IELTS')">
-                    <h4>Cơ Bản</h4>
-                    <p>&lt; 3.0 (Mất gốc)</p>
-                </div>
-                <div class="level-card active" onclick="selectLevel('medium', '3.5 - 6.5 IELTS')">
-                    <h4>Trung Bình</h4>
-                    <p>3.5 - 6.5 IELTS</p>
-                </div>
-                <div class="level-card" onclick="selectLevel('advanced', '> 6.5 IELTS')">
-                    <h4>Nâng Cao</h4>
-                    <p>&gt; 6.5 IELTS</p>
-                </div>
-            </div>
-
-            <!-- Topic Categories -->
-            <div class="section-title">
-                <span><i class="fa-solid fa-bookmark" style="color:var(--accent-color)"></i> Bộ Lọc Chủ Đề Bài Học</span>
-            </div>
-            <div class="topic-scroll">
-                <div class="topic-chip active" onclick="filterTopic('all', this)"><i class="fa-solid fa-border-all"></i> Tất cả</div>
-                <div class="topic-chip" onclick="filterTopic('daily', this)"><i class="fa-solid fa-mug-hot"></i> Giao tiếp</div>
-                <div class="topic-chip" onclick="filterTopic('business', this)"><i class="fa-solid fa-briefcase"></i> Công sở</div>
-                <div class="topic-chip" onclick="filterTopic('travel', this)"><i class="fa-solid fa-plane"></i> Du lịch</div>
-                <div class="topic-chip" onclick="filterTopic('interview', this)"><i class="fa-solid fa-user-tie"></i> Phỏng vấn</div>
-                <div class="topic-chip" onclick="filterTopic('academic', this)"><i class="fa-solid fa-book"></i> Academic</div>
-            </div>
-
-            <div class="section-title">
-                <span><i class="fa-solid fa-bolt" style="color:#10B981"></i> Chọn Kỹ Năng Luyện Tập</span>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card skill-listening" onclick="openSkillSelector('listening')">
-                    <div class="skill-icon"><i class="fa-solid fa-headphones"></i></div>
-                    <div class="skill-info">
-                        <h3>Listening Practice (200 Bài)</h3>
-                        <p>Nghe hội thoại, điền từ & phản xạ 20 câu/bài</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
-                </div>
-
-                <div class="skill-card skill-reading" onclick="openSkillSelector('reading')">
-                    <div class="skill-icon"><i class="fa-solid fa-book-open"></i></div>
-                    <div class="skill-info">
-                        <h3>Reading Practice (200 Bài)</h3>
-                        <p>Đọc hiểu, phát âm chuẩn & trắc nghiệm 20 câu</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
-                </div>
-
-                <div class="skill-card skill-writing" onclick="openSkillSelector('writing')">
-                    <div class="skill-icon"><i class="fa-solid fa-pen-nib"></i></div>
-                    <div class="skill-info">
-                        <h3>Writing Practice (200 Bài)</h3>
-                        <p>Viết câu, Email, Essay tăng độ khó 20 câu</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
-                </div>
-
-                <div class="skill-card skill-call" onclick="openSkillSelector('call')">
-                    <div class="skill-icon"><i class="fa-solid fa-phone-volume"></i></div>
-                    <div class="skill-info">
-                        <h3>AI Voice Call Simulator</h3>
-                        <p>Thực hành giao tiếp 20 tình huống phản xạ</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
-                </div>
-            </div>
-        </div>
-
-        <!-- LESSON LIST CATALOG SCREEN -->
-        <div id="screen-catalog" class="screen">
-            <button onclick="showScreen('dashboard')" class="text-indigo-600 font-semibold mb-3 flex items-center gap-2 text-xs"><i class="fa-solid fa-arrow-left"></i> Quay lại Menu Kỹ Năng</button>
-            <div class="section-title">
-                <span id="catalog-title">📚 Danh Sách 200 Bài Học</span>
-                <span class="text-xs font-normal text-slate-500" id="catalog-count">200 bài</span>
-            </div>
-
-            <div class="relative mb-3">
-                <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
-                <input type="text" id="lesson-search-input" onkeyup="searchLessons()" placeholder="Tìm kiếm bài 1 - 200 hoặc tên bài..." class="w-full pl-8 pr-3 py-1.5 text-xs border border-slate-200 rounded-xl outline-none focus:border-indigo-500">
-            </div>
-
-            <div class="lesson-list-container" id="lesson-catalog-list">
-                <!-- Dynamically generated 200 lessons -->
-            </div>
-        </div>
-
-        <!-- LESSON RUNNER SCREEN (20 ITEMS PER LESSON) -->
-        <div id="screen-runner" class="screen">
-            <div class="flex justify-between items-center mb-2">
-                <button onclick="confirmExitRunner()" class="text-slate-500 font-semibold flex items-center gap-1 text-xs hover:text-rose-600 transition"><i class="fa-solid fa-arrow-left-long"></i> Thoát bài học</button>
-                <div class="text-xs font-bold text-indigo-600" id="runner-lesson-title">Bài 1/200</div>
-                <div class="speed-btn" onclick="changeSpeed()" id="speed-btn">1.0x</div>
-            </div>
-
-            <!-- Progress Bar -->
-            <div class="w-full bg-slate-200 rounded-full h-2 mb-2">
-                <div class="bg-indigo-600 h-2 rounded-full transition-all duration-300" id="runner-progress-bar" style="width: 5%;"></div>
-            </div>
-
-            <div class="flex justify-between items-center text-xs text-slate-500 mb-2 font-semibold">
-                <span>Câu hỏi <strong id="current-q-num" class="text-indigo-600">1</strong>/20</span>
-                <span class="difficulty-pill diff-easy" id="current-q-diff">Độ khó: 1/20</span>
-            </div>
-
-            <!-- 30s Countdown Timer Banner -->
-            <div class="flex items-center justify-between bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-xl mb-2 text-xs">
-                <span class="text-amber-800 font-medium flex items-center gap-1.5">
-                    <i class="fa-solid fa-hourglass-half animate-spin text-amber-600"></i>
-                    Gợi ý AI tự động sau:
-                </span>
-                <span class="font-extrabold text-amber-700 bg-amber-200/80 px-2 py-0.5 rounded-md" id="inactivity-timer-text">30s</span>
-            </div>
-
-            <div class="interactive-box" id="question-card-body">
-                <!-- Question Content Injected via JS -->
-            </div>
-
-            <!-- Smart 30s Inactivity Hint Card -->
-            <div id="smart-hint-card" class="bg-amber-50/90 border border-amber-300 rounded-xl p-3 mb-2 text-xs shadow-sm transition-all duration-300" style="display:none;">
-                <div class="flex items-center justify-between text-amber-900 font-bold mb-1">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-lightbulb text-amber-500 text-sm"></i> Gợi ý Từ Khóa (AI Keyword Hint)</span>
-                    <button onclick="dismissHintCard()" class="text-amber-700 text-[10px] bg-amber-200/60 hover:bg-amber-200 px-1.5 py-0.5 rounded">Ẩn</button>
-                </div>
-                <div class="text-slate-700 space-y-1" id="smart-hint-content">
-                    <!-- Hint details -->
-                </div>
-            </div>
-
-            <div id="runner-feedback" class="ai-feedback" style="display:none;"></div>
-
-            <!-- Navigation Bar inside Runner (Prev / Skip / Submit / Next) -->
-            <div class="mt-3 flex gap-2">
-                <button id="btn-prev-q" onclick="prevQuestion()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-semibold border border-slate-200 text-xs transition flex items-center gap-1">
-                    <i class="fa-solid fa-chevron-left"></i> Câu trước
-                </button>
-                <button id="btn-submit-q" onclick="submitCurrentAnswer()" class="flex-1 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold shadow-md shadow-indigo-200 text-xs transition">Kiểm Tra Câu Này</button>
-                <button id="btn-skip-q" onclick="skipQuestion()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl font-semibold border border-slate-200 text-xs transition">Bỏ qua</button>
-                <button id="btn-next-q" onclick="nextQuestion()" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold shadow-md shadow-emerald-200 text-xs transition" style="display:none;">Câu Tiếp Theo <i class="fa-solid fa-arrow-right ml-1"></i></button>
-            </div>
-        </div>
-
-        <!-- LESSON RESULT SUMMARY SCREEN -->
-        <div id="screen-result" class="screen">
-            <div class="interactive-box text-center py-6">
-                <div class="w-16 h-16 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
-                    <i class="fa-solid fa-trophy"></i>
-                </div>
-                <h3 class="text-base font-bold text-slate-800">Hoàn Thành Bài Học!</h3>
-                <p class="text-xs text-slate-500 mt-1" id="result-lesson-name">Bài 1: Giao tiếp chào hỏi</p>
-
-                <div class="my-4 p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
-                    <div class="text-xs text-slate-600">Điểm Số Của Bạn</div>
-                    <div class="text-3xl font-extrabold text-indigo-600 mt-1" id="result-score">18 / 20</div>
-                    <div class="text-xs font-semibold text-emerald-600 mt-1" id="result-percentage">Đạt 90% chính xác</div>
-                </div>
-
-                <div class="text-left text-xs space-y-2 mb-4 bg-slate-50 p-3 rounded-xl border border-slate-200" id="result-details">
-                    <!-- Detailed stats -->
-                </div>
-
-                <button onclick="showScreen('catalog')" class="w-full py-2.5 bg-indigo-600 text-white rounded-xl font-semibold text-xs shadow-md shadow-indigo-200 mb-2">Tiếp Tục Chọn Bài Học</button>
-                <button onclick="restartCurrentLesson()" class="w-full py-2 bg-slate-100 text-slate-700 rounded-xl font-semibold text-xs border border-slate-200">Luyện Tập Lại Bài Này</button>
-            </div>
-        </div>
-
-        <!-- PROGRESS & STATS TAB SCREEN -->
-        <div id="screen-progress" class="screen">
-            <div class="section-title">
-                <span><i class="fa-solid fa-chart-line text-indigo-600"></i> Tiến Độ & Thống Kê Học Tập</span>
-            </div>
-
-            <!-- Stats Overview Cards -->
-            <div class="grid grid-cols-2 gap-2 mb-3">
-                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-2xl">
-                    <div class="text-[11px] text-slate-500 font-semibold">Tổng Bài Hoàn Thành</div>
-                    <div class="text-xl font-black text-indigo-600 mt-1" id="stats-completed-count">1 / 600</div>
-                    <div class="text-[10px] text-indigo-500 mt-0.5">Trên 3 Trình Độ</div>
-                </div>
-                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-2xl">
-                    <div class="text-[11px] text-slate-500 font-semibold">Chuỗi Ngày Học (Streak)</div>
-                    <div class="text-xl font-black text-emerald-600 mt-1 flex items-center gap-1">
-                        <i class="fa-solid fa-fire text-amber-500 text-base"></i> <span id="stats-streak-count">3 Ngày</span>
-                    </div>
-                    <div class="text-[10px] text-emerald-600 mt-0.5">Giữ vững phong độ!</div>
-                </div>
-            </div>
-
-            <!-- Detailed Level Completion Progress -->
-            <div class="interactive-box mb-3">
-                <h4 class="text-xs font-bold text-slate-800 mb-2.5">Tỉ Lệ Mở Khóa Theo Bậc</h4>
-                <div class="space-y-3 text-xs">
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="font-semibold text-slate-700">Cơ Bản (&lt; 3.0)</span>
-                            <span class="text-indigo-600 font-bold" id="level-progress-basic">5 / 200 bài</span>
-                        </div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="bg-indigo-500 h-full rounded-full" id="level-bar-basic" style="width: 2.5%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="font-semibold text-slate-700">Trung Bình (3.5 - 6.5)</span>
-                            <span class="text-indigo-600 font-bold" id="level-progress-medium">5 / 200 bài</span>
-                        </div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="bg-emerald-500 h-full rounded-full" id="level-bar-medium" style="width: 2.5%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="font-semibold text-slate-700">Nâng Cao (&gt; 6.5)</span>
-                            <span class="text-indigo-600 font-bold" id="level-progress-advanced">5 / 200 bài</span>
-                        </div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                            <div class="bg-amber-500 h-full rounded-full" id="level-bar-advanced" style="width: 2.5%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="interactive-box">
-                <h4 class="text-xs font-bold text-slate-800 mb-2">Bảng Thành Tích Lynh VIP</h4>
-                <div class="space-y-2 text-xs">
-                    <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-xl border border-slate-100">
-                        <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-award"></i></div>
-                        <div>
-                            <div class="font-bold text-slate-800">Tân Binh Chăm Chỉ</div>
-                            <div class="text-[10px] text-slate-500">Hoàn thành bài học đầu tiên trong ứng dụng</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-xl border border-slate-100">
-                        <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-brain"></i></div>
-                        <div>
-                            <div class="font-bold text-slate-800">Master Phản Xạ Realtime</div>
-                            <div class="text-[10px] text-slate-500">Đạt kết quả chính xác trên 80% câu hỏi</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- USER PROFILE & SETTINGS SCREEN -->
-        <div id="screen-profile" class="screen">
-            <div class="section-title">
-                <span><i class="fa-solid fa-gear text-indigo-600"></i> Tài Khoản & Cài Đặt Hệ Thống</span>
-            </div>
-
-            <div class="interactive-box text-center mb-3">
-                <div class="w-16 h-16 bg-gradient-to-tr from-indigo-500 to-purple-500 text-white rounded-full flex items-center justify-center mx-auto mb-2 text-2xl font-bold shadow-md">
-                    <i class="fa-solid fa-user-graduate"></i>
-                </div>
-                <div class="font-bold text-slate-800 text-sm" id="profile-display-name">Lynh English Student</div>
-                <div class="text-[11px] text-indigo-600 font-semibold mt-0.5">Tài Khoản VIP Premium</div>
-            </div>
-
-            <div class="interactive-box space-y-3 mb-3">
-                <h4 class="text-xs font-bold text-slate-800 border-b pb-1.5 border-slate-100">Cấu Hình Giọng Nói AI phát âm</h4>
-                <div>
-                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Tên Người Dùng</label>
-                    <input type="text" id="user-name-input" value="Lynh Student" onchange="updateProfileName()" class="w-full px-3 py-1.5 text-xs border border-slate-200 rounded-xl outline-none focus:border-indigo-500">
-                </div>
-                <div>
-                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Giọng Đọc Mặc Định (Accent)</label>
-                    <select id="setting-voice-accent" onchange="updateVoiceSetting()" class="w-full px-3 py-1.5 text-xs border border-slate-200 rounded-xl outline-none focus:border-indigo-500 bg-white">
-                        <option value="en-US">Tiếng Anh - Mỹ (en-US)</option>
-                        <option value="en-GB">Tiếng Anh - Anh (en-GB)</option>
-                        <option value="en-AU">Tiếng Anh - Úc (en-AU)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-[11px] font-semibold text-slate-600 mb-1">Tốc Độ Đọc Mặc Định</label>
-                    <select id="setting-voice-rate" onchange="updateVoiceSetting()" class="w-full px-3 py-1.5 text-xs border border-slate-200 rounded-xl outline-none focus:border-indigo-500 bg-white">
-                        <option value="0.8">Chậm (0.8x)</option>
-                        <option value="1.0" selected>Chuẩn (1.0x)</option>
-                        <option value="1.2">Nhanh (1.2x)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="interactive-box space-y-2">
-                <h4 class="text-xs font-bold text-slate-800 mb-1">Quản Lý Dữ Liệu Học Tập</h4>
-                <button onclick="testSystemAudio()" class="w-full py-2 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 rounded-xl font-semibold text-xs border border-indigo-100 transition"><i class="fa-solid fa-volume-high mr-1"></i> Kiểm Tra Âm Thanh Realtime</button>
-                <button onclick="resetLearningData()" class="w-full py-2 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded-xl font-semibold text-xs border border-rose-100 transition"><i class="fa-solid fa-rotate-right mr-1"></i> Đặt Lại Tất Cả Tiến Độ 200 Bài</button>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- AI CALL SCREEN -->
-    <div id="call-screen" class="call-screen">
-        <div class="text-center">
-            <div class="text-xs text-slate-400 uppercase tracking-widest">AI Call Simulator (20 Tình Huống)</div>
-            <h2 class="text-base font-bold mt-1 text-white" id="call-topic-title">Lynh AI Conversation</h2>
-            <div class="text-xs text-amber-400 mt-0.5" id="call-step-indicator">Tình huống 1 / 20</div>
-        </div>
-
-        <div>
-            <div class="ai-avatar-container" id="avatar-container">
-                <div class="ai-wave"></div>
-                <div class="ai-wave"></div>
-                <div class="ai-avatar-core">
-                    <i class="fa-solid fa-robot"></i>
-                </div>
-            </div>
-            <div class="transcript-box" id="transcript-box">
-                <div class="text-slate-400 italic" id="call-initial-text">AI: "Hello! Choose a topic and let's start talking!"</div>
-            </div>
-        </div>
-
-        <div class="call-controls">
-            <button class="btn-call-action btn-hint" onclick="getCallHint()" title="Gợi ý câu trả lời"><i class="fa-solid fa-lightbulb"></i></button>
-            <button class="btn-call-action btn-end" onclick="endCall()" title="Tắt cuộc gọi"><i class="fa-solid fa-phone-slash"></i></button>
-            <button class="btn-call-action btn-mic" id="mic-btn" onclick="toggleMic()" title="Bật/Tắt Mic"><i class="fa-solid fa-microphone"></i></button>
-        </div>
-    </div>
-
-    <!-- Navigation Bar -->
-    <div class="nav-bar">
-        <div class="nav-item active" id="nav-item-dashboard" onclick="switchNav('dashboard')">
-            <i class="fa-solid fa-house"></i>
-            <span>Trang chủ</span>
-        </div>
-        <div class="nav-item" id="nav-item-call" onclick="openSkillSelector('call')">
-            <i class="fa-solid fa-phone"></i>
-            <span>AI Call</span>
-        </div>
-        <div class="nav-item" id="nav-item-progress" onclick="switchNav('progress')">
-            <i class="fa-solid fa-chart-pie"></i>
-            <span>Tiến độ</span>
-        </div>
-        <div class="nav-item" id="nav-item-profile" onclick="switchNav('profile')">
-            <i class="fa-solid fa-user"></i>
-            <span>Tài khoản</span>
-        </div>
-    </div>
-</div>
-
-<script>
-    // State management
-    let currentLevel = 'medium'; // basic, medium, advanced
-    let currentTopic = 'all';
-    let currentSkill = 'listening'; // listening, reading, writing, call
-    let currentSpeed = 1.0;
-    let preferredVoiceLang = 'en-US';
-    let audioContext = null;
-    let isAudioEnabled = false;
-
-    // Lesson runner states
-    let activeLessonObj = null;
-    let currentQuestionIndex = 0; // 0 to 19
-    let userAnswers = []; // Store score & responses
-    let activeSelectedMCQ = null;
-
-    // 30s Inactivity Timer States
-    let inactivityTimer = null;
-    let countdownSeconds = 30;
-
-    // AI Call States
-    let isCalling = false;
-    let isMicActive = true;
-    let speechRecognition = null;
-
-    // DYNAMIC MODULAR CURRICULUM GENERATOR (200 LESSONS x 20 ITEMS)
-    const TOPICS = ['daily', 'business', 'travel', 'interview', 'academic'];
-    const TOPIC_NAMES = {
-        daily: 'Giao tiếp Hàng ngày',
-        business: 'Tiếng Anh Công sở',
-        travel: 'Du lịch & Khám phá',
-        interview: 'Phỏng vấn Xin việc',
-        academic: 'Luyện thi Academic IELTS'
-    };
-
-    // Dictionary templates for generating progressive 20 items per lesson
-    const VOCAB_BANKS = {
-        basic: [
-            { en: 'coffee', vi: 'cà phê', p: 'noun' }, { en: 'water', vi: 'nước', p: 'noun' },
-            { en: 'hotel', vi: 'khách sạn', p: 'noun' }, { en: 'ticket', vi: 'vé', p: 'noun' },
-            { en: 'airport', vi: 'sân bay', p: 'noun' }, { en: 'friend', vi: 'bạn bè', p: 'noun' },
-            { en: 'family', vi: 'gia đình', p: 'noun' }, { en: 'morning', vi: 'buổi sáng', p: 'noun' },
-            { en: 'happy', vi: 'vui vẻ', p: 'adj' }, { en: 'simple', vi: 'đơn giản', p: 'adj' },
-            { en: 'beautiful', vi: 'đẹp', p: 'adj' }, { en: 'cheap', vi: 'rẻ', p: 'adj' },
-            { en: 'clean', vi: 'sạch sẽ', p: 'adj' }, { en: 'speak', vi: 'nói', p: 'verb' },
-            { en: 'learn', vi: 'học', p: 'verb' }, { en: 'listen', vi: 'nghe', p: 'verb' },
-            { en: 'write', vi: 'viết', p: 'verb' }, { en: 'travel', vi: 'du lịch', p: 'verb' },
-            { en: 'welcome', vi: 'chào mừng', p: 'verb' }, { en: 'understand', vi: 'hiểu', p: 'verb' }
-        ],
-        medium: [
-            { en: 'deadline', vi: 'hạn chót', p: 'noun' }, { en: 'schedule', vi: 'lịch trình', p: 'noun' },
-            { en: 'proposal', vi: 'đề xuất', p: 'noun' }, { en: 'budget', vi: 'ngân sách', p: 'noun' },
-            { en: 'flexible', vi: 'linh hoạt', p: 'adj' }, { en: 'efficient', vi: 'hiệu quả', p: 'adj' },
-            { en: 'strategy', vi: 'chiến lược', p: 'noun' }, { en: 'negotiate', vi: 'đàm phán', p: 'verb' },
-            { en: 'colleague', vi: 'đồng nghiệp', p: 'noun' }, { en: 'priority', vi: 'sự ưu tiên', p: 'noun' },
-            { en: 'solution', vi: 'giải pháp', p: 'noun' }, { en: 'evaluate', vi: 'đánh giá', p: 'verb' },
-            { en: 'optimize', vi: 'tối ưu hóa', p: 'verb' }, { en: 'feedback', vi: 'phản hồi', p: 'noun' },
-            { en: 'implement', vi: 'thực thi', p: 'verb' }, { en: 'collaborate', vi: 'hợp tác', p: 'verb' },
-            { en: 'productivity', vi: 'năng suất', p: 'noun' }, { en: 'management', vi: 'quản lý', p: 'noun' },
-            { en: 'opportunity', vi: 'cơ hội', p: 'noun' }, { en: 'achievement', vi: 'thành tựu', p: 'noun' }
-        ],
-        advanced: [
-            { en: 'fluctuation', vi: 'sự biến động', p: 'noun' }, { en: 'resilience', vi: 'khả năng phục hồi', p: 'noun' },
-            { en: 'oversight', vi: 'sự giám sát', p: 'noun' }, { en: 'sustainability', vi: 'sự bền vững', p: 'noun' },
-            { en: 'unprecedented', vi: 'chưa từng có', p: 'adj' }, { en: 'subsubstantial', vi: 'đáng kể', p: 'adj' },
-            { en: 'comprehensive', vi: 'toàn diện', p: 'adj' }, { en: 'recalibrate', vi: 'hiệu chỉnh lại', p: 'verb' },
-            { en: 'inversion', vi: 'sự đảo ngược', p: 'noun' }, { en: 'paradigm', vi: 'mô hình mẫu', p: 'noun' },
-            { en: 'benchmark', vi: 'tiêu chuẩn đối sánh', p: 'noun' }, { en: 'mitigate', vi: 'giảm thiểu', p: 'verb' },
-            { en: 'ambiguity', vi: 'sự mơ hồ', p: 'noun' }, { en: 'disruption', vi: 'sự gián đoạn', p: 'noun' },
-            { en: 'infrastructure', vi: 'hạ tầng', p: 'noun' }, { en: 'methodology', vi: 'phương pháp luận', p: 'noun' },
-            { en: 'perspective', vi: 'góc nhìn', p: 'noun' }, { en: 'phenomenon', vi: 'hiện tượng', p: 'noun' },
-            { en: 'transformation', vi: 'sự chuyển đổi', p: 'noun' }, { en: 'feasibility', vi: 'tính khả thi', p: 'noun' }
-        ]
-    };
-
-    // GENERATE 200 LESSONS DYNAMICALLY
-    function generateCurriculum() {
-        const curriculum = { basic: [], medium: [], advanced: [] };
-
-        ['basic', 'medium', 'advanced'].forEach(lvl => {
-            const vocabList = VOCAB_BANKS[lvl];
-
-            for (let i = 1; i <= 200; i++) {
-                const topicKey = TOPICS[(i - 1) % TOPICS.length];
-                const topicName = TOPIC_NAMES[topicKey];
-
-                // Generate 20 progressive items for this lesson
-                const items = [];
-                for (let q = 1; q <= 20; q++) {
-                    const vocab = vocabList[(q - 1) % vocabList.length];
-                    const diffScore = Math.min(20, Math.floor((i / 10) + (q / 2))); // difficulty curve
-
-                    // 1. Listening Question
-                    const listeningText = `This is practice sentence number ${q} involving ${vocab.en} for your lesson.`;
-                    
-                    // 2. MCQ Options
-                    const options = [
-                        vocab.vi,
-                        `Ý nghĩa phụ liên quan đến ${vocab.p}`,
-                        `Cấu trúc sai ngữ pháp`,
-                        `Từ trái nghĩa cơ bản`
-                    ].sort(() => 0.5 - Math.random());
-
-                    // 3. Sentence Writing
-                    const sentenceEn = `We should ${vocab.en} carefully during our project work.`;
-                    const sentenceVi = `Chúng ta nên ${vocab.vi} một cách cẩn thận trong công việc.`;
-
-                    items.push({
-                        qNum: q,
-                        difficulty: diffScore,
-                        vocab: vocab,
-                        listeningText: listeningText,
-                        blankWord: vocab.en,
-                        mcqQuestion: `Từ "${vocab.en}" (${vocab.p}) có nghĩa tiếng Việt là gì?`,
-                        mcqOptions: options,
-                        correctMcq: vocab.vi,
-                        writingPrompt: sentenceVi,
-                        writingCorrect: sentenceEn,
-                        explanation: `Từ "${vocab.en}" là ${vocab.p} có nghĩa là "${vocab.vi}". Sử dụng phổ biến trong ngữ cảnh ${topicName}.`
-                    });
-                }
-
-                curriculum[lvl].push({
-                    id: `${lvl}_lesson_${i}`,
-                    lessonNum: i,
-                    title: `Bài ${i}: ${topicName} (Cấp độ ${i})`,
-                    topic: topicKey,
-                    difficulty: Math.ceil(i / 10),
-                    isUnlocked: i === 1 || i <= 5, // Unlock first few lessons
-                    progress: i === 1 ? 100 : 0,
-                    score: i === 1 ? '18/20' : '0/20',
-                    items: items
-                });
-            }
-        });
-
-        return curriculum;
-    }
-
-    const DATABASE = generateCurriculum();
-
-    // Sound Generator (Web Audio API)
-    function initAudioContext() {
-        if (!audioContext) {
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioContext.state === 'suspended') {
-            audioContext.resume();
-        }
-        isAudioEnabled = true;
-        document.getElementById('audio-status').innerText = "Âm Thanh Bật";
-        document.getElementById('audio-icon').className = "fa-solid fa-volume-high";
-    }
-
-    function toggleAudioEngine() {
-        if (!isAudioEnabled) {
-            initAudioContext();
-            playEffect('success');
-        } else {
-            stopAllAudio();
-            isAudioEnabled = false;
-            document.getElementById('audio-status').innerText = "Âm Thanh Tắt";
-            document.getElementById('audio-icon').className = "fa-solid fa-volume-xmark";
-        }
-    }
-
-    function stopAllAudio() {
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-        }
-    }
-
-    function playEffect(type) {
-        if (!isAudioEnabled) return;
-        try {
-            initAudioContext();
-            const osc = audioContext.createOscillator();
-            const gain = audioContext.createGain();
-            osc.connect(gain);
-            gain.connect(audioContext.destination);
-
-            const now = audioContext.currentTime;
-
-            if (type === 'success') {
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(523.25, now);
-                osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.1);
-                osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.2);
-                gain.gain.setValueAtTime(0.25, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
-                osc.start(now);
-                osc.stop(now + 0.35);
-            } else if (type === 'error') {
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(220, now);
-                osc.frequency.linearRampToValueAtTime(140, now + 0.2);
-                gain.gain.setValueAtTime(0.25, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
-                osc.start(now);
-                osc.stop(now + 0.25);
-            } else if (type === 'click') {
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(450, now);
-                gain.gain.setValueAtTime(0.08, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
-                osc.start(now);
-                osc.stop(now + 0.04);
-            } else if (type === 'ring') {
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(440, now);
-                osc.frequency.setValueAtTime(880, now + 0.12);
-                gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
-                osc.start(now);
-                osc.stop(now + 0.25);
-            }
-        } catch (e) {
-            console.log("Audio FX error:", e);
-        }
-    }
-
-    // Native Web Speech Synthesis
-    function speakText(text, lang = preferredVoiceLang, rate = currentSpeed, onEndCallback = null) {
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = lang;
-            utterance.rate = rate;
-
-            utterance.onstart = () => {
-                const avatar = document.getElementById('avatar-container');
-                if (avatar) avatar.classList.add('speaking');
-            };
-
-            utterance.onend = () => {
-                const avatar = document.getElementById('avatar-container');
-                if (avatar) avatar.classList.remove('speaking');
-                if (onEndCallback) onEndCallback();
-            };
-
-            utterance.onerror = () => {
-                const avatar = document.getElementById('avatar-container');
-                if (avatar) avatar.classList.remove('speaking');
-            };
-
-            window.speechSynthesis.speak(utterance);
-        }
-    }
-
-    // Navigation Screen Management
-    function showScreen(screenId) {
-        playEffect('click');
-        stopAllAudio();
-        stopInactivityTimer();
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById(`screen-${screenId}`).classList.add('active');
-
-        if (screenId === 'progress') {
-            renderProgressStats();
-        }
-    }
-
-    function switchNav(navKey) {
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        const activeNav = document.getElementById(`nav-item-${navKey}`);
-        if (activeNav) activeNav.classList.add('active');
-        showScreen(navKey);
-    }
-
-    function selectLevel(level, label) {
-        playEffect('click');
-        currentLevel = level;
-        document.getElementById('current-level-tag').innerText = label;
-        document.querySelectorAll('.level-card').forEach(c => c.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        if (document.getElementById('screen-catalog').classList.contains('active')) {
-            renderLessonCatalog();
-        }
-    }
-
-    function filterTopic(topic, element) {
-        playEffect('click');
-        currentTopic = topic;
-        document.querySelectorAll('.topic-chip').forEach(c => c.classList.remove('active'));
-        element.classList.add('active');
-        if (document.getElementById('screen-catalog').classList.contains('active')) {
-            renderLessonCatalog();
-        }
-    }
-
-    function openSkillSelector(skill) {
-        playEffect('click');
-        currentSkill = skill;
-        if (skill === 'call') {
-            startCall();
-            return;
-        }
-        const skillTitles = {
-            listening: '🎧 200 Bài Luyện Nghe (Listening)',
-            reading: '📖 200 Bài Đọc Hiểu (Reading)',
-            writing: '✍️ 200 Bài Luyện Viết (Writing)',
-            call: '📞 200 Tình Huống AI Call'
-        };
-        document.getElementById('catalog-title').innerText = skillTitles[skill];
-        showScreen('catalog');
-        renderLessonCatalog();
-    }
-
-    // RENDER 200 LESSON CATALOG LIST
-    function renderLessonCatalog() {
-        const lessons = DATABASE[currentLevel].filter(l => currentTopic === 'all' || l.topic === currentTopic);
-        const container = document.getElementById('lesson-catalog-list');
-        document.getElementById('catalog-count').innerText = `${lessons.length} bài`;
-
-        if (lessons.length === 0) {
-            container.innerHTML = `<div class="text-xs text-slate-400 italic p-4 text-center">Không tìm thấy bài học phù hợp.</div>`;
-            return;
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        container.innerHTML = lessons.map(l => {
-            const diffClass = l.difficulty <= 6 ? 'diff-easy' : (l.difficulty <= 14 ? 'diff-mid' : 'diff-hard');
-            const diffLabel = l.difficulty <= 6 ? 'Dễ' : (l.difficulty <= 14 ? 'Trung bình' : 'Khó');
-
-            return `
-                <div class="lesson-card-item ${!l.isUnlocked ? 'locked' : ''}" onclick="startLesson('${l.id}')">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-xs font-bold text-slate-800">${l.title}</span>
-                            <span class="difficulty-pill ${diffClass}">${diffLabel}</span>
-                        </div>
-                        <div class="text-[10px] text-slate-500 mt-0.5">20 câu hỏi • Tiến độ: ${l.progress}% • Điểm: ${l.score}</div>
-                    </div>
-                    <div>
-                        ${l.isUnlocked 
-                            ? `<i class="fa-solid fa-circle-play text-indigo-600 text-lg"></i>` 
-                            : `<i class="fa-solid fa-lock text-slate-400 text-sm"></i>`}
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
-
-    function searchLessons() {
-        const query = document.getElementById('lesson-search-input').value.toLowerCase();
-        const items = document.querySelectorAll('.lesson-card-item');
-        items.forEach(item => {
-            const text = item.innerText.toLowerCase();
-            item.style.display = text.includes(query) ? 'flex' : 'none';
-        });
-    }
-
-    // SMART 30-SECOND INACTIVITY HINT ENGINE
-    function startInactivityTimer() {
-        stopInactivityTimer();
-        countdownSeconds = 30;
-        document.getElementById('inactivity-timer-text').innerText = '30s';
-        document.getElementById('smart-hint-card').style.display = 'none';
-
-        inactivityTimer = setInterval(() => {
-            countdownSeconds--;
-            document.getElementById('inactivity-timer-text').innerText = `${countdownSeconds}s`;
-
-            if (countdownSeconds <= 0) {
-                clearInterval(inactivityTimer);
-                showSmartHint();
-            }
-        }, 1000);
-    }
-
-    function stopInactivityTimer() {
-        if (inactivityTimer) {
-            clearInterval(inactivityTimer);
-            inactivityTimer = null;
-        }
-    }
-
-    function resetInactivityOnUserAction() {
-        if (document.getElementById('smart-hint-card').style.display === 'none') {
-            startInactivityTimer();
-        }
-    }
-
-    function showSmartHint() {
-        if (!activeLessonObj) return;
-        playEffect('ring');
-        const qData = activeLessonObj.items[currentQuestionIndex];
-        const card = document.getElementById('smart-hint-card');
-        const content = document.getElementById('smart-hint-content');
-
-        content.innerHTML = `
-            <div>• <b>Keyword cốt lõi:</b> <span class="text-indigo-600 font-bold">${qData.vocab.en}</span> (${qData.vocab.p} - ${qData.vocab.vi})</div>
-            <div>• <b>Cấu trúc gợi ý:</b> S + should/can + <u class="text-amber-700">${qData.vocab.en}</u> + O</div>
-            <div>• <b>Từ đồng nghĩa/Gần nghĩa:</b> <span class="italic text-slate-600">${qData.vocab.en} key term</span></div>
-        `;
-
-        card.style.display = 'block';
-    }
-
-    function dismissHintCard() {
-        playEffect('click');
-        document.getElementById('smart-hint-card').style.display = 'none';
-        startInactivityTimer();
-    }
-
-    // START A LESSON (RUNNER ENGINE - 20 QUESTIONS)
-    function startLesson(lessonId) {
-        initAudioContext();
-        const lesson = DATABASE[currentLevel].find(l => l.id === lessonId);
-        if (!lesson) return;
-
-        if (!lesson.isUnlocked) {
-            playEffect('error');
-            alert('Bài học này chưa mở khóa. Hãy hoàn thành các bài trước!');
-            return;
+        .timer-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            background: #FFFBEB;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid #FDE68A;
+            display: inline-block;
+            margin-bottom: 8px;
         }
 
-        activeLessonObj = lesson;
-        currentQuestionIndex = 0;
-        userAnswers = [];
-        document.getElementById('runner-lesson-title').innerText = `Bài ${lesson.lessonNum}/200`;
-        
-        showScreen('runner');
-        renderQuestion(currentQuestionIndex);
-    }
-
-    function renderQuestion(qIndex) {
-        stopAllAudio();
-        startInactivityTimer();
-        const qData = activeLessonObj.items[qIndex];
-        document.getElementById('current-q-num').innerText = qIndex + 1;
-        document.getElementById('current-q-diff').innerText = `Độ khó: ${qData.difficulty}/20`;
-        document.getElementById('runner-progress-bar').style.width = `${((qIndex + 1) / 20) * 100}%`;
-
-        document.getElementById('runner-feedback').style.display = 'none';
-        document.getElementById('btn-submit-q').style.display = 'block';
-        document.getElementById('btn-next-q').style.display = 'none';
-        
-        // Prev button visibility
-        document.getElementById('btn-prev-q').style.opacity = (qIndex === 0) ? '0.5' : '1';
-        document.getElementById('btn-prev-q').disabled = (qIndex === 0);
-
-        activeSelectedMCQ = null;
-
-        const card = document.getElementById('question-card-body');
-
-        // Dynamic rendering according to current Skill
-        if (currentSkill === 'listening') {
-            card.innerHTML = `
-                <div class="audio-player">
-                    <button class="play-btn" onclick="speakText('${qData.listeningText.replace(/'/g, "\\'")}')"><i class="fa-solid fa-volume-high"></i></button>
-                    <div style="flex:1">
-                        <div style="font-size:0.8rem; font-weight:700; color:var(--text-dark);">Phát Âm Nghe Realtime</div>
-                        <div style="font-size:0.68rem; color:var(--text-muted)">Bấm nút để nghe câu nói chuẩn ngữ điệu</div>
-                    </div>
-                </div>
-                <p class="text-xs text-slate-700 font-semibold mb-2">Nghe và điền từ còn thiếu vào ô trống:</p>
-                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs text-slate-800 leading-relaxed">
-                    "${qData.listeningText.replace(qData.blankWord, `<input type="text" id="q-input-text" oninput="resetInactivityOnUserAction()" class="w-24 px-2 py-0.5 border border-indigo-400 rounded text-indigo-700 font-bold outline-none text-center" placeholder="...">`)}"
-                </div>
-            `;
-            // Auto play speech for listening item
-            setTimeout(() => speakText(qData.listeningText), 300);
-
-        } else if (currentSkill === 'reading') {
-            card.innerHTML = `
-                <div class="text-xs font-bold text-slate-700 mb-2">${qData.mcqQuestion}</div>
-                <div class="flex flex-col gap-2">
-                    ${qData.mcqOptions.map((opt, i) => `
-                        <div class="mcq-option" id="mcq-opt-${i}" onclick="selectMCQOption(${i}, '${opt.replace(/'/g, "\\'")}')">
-                            <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-600 font-bold text-[10px] flex items-center justify-center">${String.fromCharCode(65 + i)}</span>
-                            <span>${opt}</span>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        } else if (currentSkill === 'writing') {
-            card.innerHTML = `
-                <p class="text-xs font-bold text-slate-700 mb-1">Dịch câu sau đây sang tiếng Anh:</p>
-                <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100 text-xs text-indigo-900 font-semibold mb-3">
-                    "${qData.writingPrompt}"
-                </div>
-                <textarea id="q-input-text" oninput="resetInactivityOnUserAction()" rows="3" class="w-full p-2.5 text-xs border border-slate-200 rounded-xl outline-none focus:border-indigo-500" placeholder="Nhập câu trả lời bằng tiếng Anh..."></textarea>
-            `;
-        } else { // Call
-            card.innerHTML = `
-                <div class="audio-player">
-                    <button class="play-btn" onclick="speakText('${qData.listeningText.replace(/'/g, "\\'")}')"><i class="fa-solid fa-volume-high"></i></button>
-                    <div style="flex:1">
-                        <div style="font-size:0.8rem; font-weight:700; color:var(--text-dark);">AI Tutor Question</div>
-                        <div style="font-size:0.68rem; color:var(--text-muted)">Phản xạ trả lời tình huống này</div>
-                    </div>
-                </div>
-                <p class="text-xs text-slate-800 font-bold mb-2">"${qData.listeningText}"</p>
-                <input type="text" id="q-input-text" oninput="resetInactivityOnUserAction()" class="w-full p-2.5 text-xs border border-slate-200 rounded-xl outline-none focus:border-indigo-500" placeholder="Nhập câu trả lời giao tiếp của bạn...">
-            `;
-            setTimeout(() => speakText(qData.listeningText), 300);
-        }
-    }
-
-    function selectMCQOption(index, val) {
-        resetInactivityOnUserAction();
-        playEffect('click');
-        activeSelectedMCQ = val;
-        document.querySelectorAll('.mcq-option').forEach(el => {
-            el.style.borderColor = "var(--border-color)";
-            el.style.background = "#F8FAFC";
-        });
-        const target = document.getElementById(`mcq-opt-${index}`);
-        if (target) {
-            target.style.borderColor = "var(--primary-color)";
-            target.style.background = "var(--primary-light)";
-        }
-    }
-
-    function submitCurrentAnswer() {
-        stopInactivityTimer();
-        initAudioContext();
-        const qData = activeLessonObj.items[currentQuestionIndex];
-        const feedback = document.getElementById('runner-feedback');
-        let isCorrect = false;
-        let userVal = "";
-
-        if (currentSkill === 'reading') {
-            if (!activeSelectedMCQ) {
-                alert('Vui lòng chọn 1 đáp án!');
-                startInactivityTimer();
-                return;
-            }
-            userVal = activeSelectedMCQ;
-            isCorrect = (userVal === qData.correctMcq);
-        } else {
-            const inputEl = document.getElementById('q-input-text');
-            if (!inputEl || !inputEl.value.trim()) {
-                alert('Vui lòng nhập câu trả lời!');
-                startInactivityTimer();
-                return;
-            }
-            userVal = inputEl.value.trim();
-
-            if (currentSkill === 'listening') {
-                isCorrect = (userVal.toLowerCase() === qData.blankWord.toLowerCase());
-            } else if (currentSkill === 'writing') {
-                isCorrect = userVal.toLowerCase().includes(qData.vocab.en.toLowerCase());
-            } else {
-                isCorrect = userVal.length > 3;
-            }
-        }
-
-        userAnswers.push({ qNum: currentQuestionIndex + 1, isCorrect: isCorrect, userVal: userVal });
-
-        feedback.style.display = 'block';
-        if (isCorrect) {
-            playEffect('success');
-            feedback.innerHTML = `
-                <div class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check"></i> Chúc mừng! Đáp án chính xác.</div>
-                <div class="text-slate-600 text-xs mt-1">${qData.explanation}</div>
-            `;
-            speakText("Correct! Well done.", 'en-US', 1.1);
-        } else {
-            playEffect('error');
-            feedback.innerHTML = `
-                <div class="text-rose-600 font-bold"><i class="fa-solid fa-circle-xmark"></i> Chưa chính xác!</div>
-                <div class="text-slate-600 text-xs mt-1">Đáp án gợi ý: <b>"${qData.blankWord || qData.correctMcq || qData.writingCorrect}"</b>.<br>${qData.explanation}</div>
-            `;
-        }
-
-        document.getElementById('btn-submit-q').style.display = 'none';
-        document.getElementById('btn-next-q').style.display = 'block';
-    }
-
-    function prevQuestion() {
-        playEffect('click');
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            renderQuestion(currentQuestionIndex);
-        }
-    }
-
-    function skipQuestion() {
-        playEffect('click');
-        userAnswers.push({ qNum: currentQuestionIndex + 1, isCorrect: false, userVal: "Skipped" });
-        nextQuestion();
-    }
-
-    function nextQuestion() {
-        playEffect('click');
-        currentQuestionIndex++;
-        if (currentQuestionIndex < 20) {
-            renderQuestion(currentQuestionIndex);
-        } else {
-            finishLesson();
-        }
-    }
-
-    function finishLesson() {
-        stopInactivityTimer();
-        const correctCount = userAnswers.filter(a => a.isCorrect).length;
-        activeLessonObj.progress = 100;
-        activeLessonObj.score = `${correctCount}/20`;
-
-        // Unlock next lesson
-        const nextLesson = DATABASE[currentLevel].find(l => l.lessonNum === activeLessonObj.lessonNum + 1);
-        if (nextLesson) nextLesson.isUnlocked = true;
-
-        document.getElementById('result-lesson-name').innerText = activeLessonObj.title;
-        document.getElementById('result-score').innerText = `${correctCount} / 20`;
-        document.getElementById('result-percentage').innerText = `Đạt ${(correctCount / 20 * 100).toFixed(0)}% tỉ lệ đúng`;
-
-        document.getElementById('result-details').innerHTML = `
-            <div class="font-bold text-slate-700 mb-1">Thống kê chi tiết bài học:</div>
-            <div>• Số câu đúng: <strong class="text-emerald-600">${correctCount} câu</strong></div>
-            <div>• Số câu sai/cần ôn: <strong class="text-rose-500">${20 - correctCount} câu</strong></div>
-            <div>• Độ khó hoàn thành: Level ${activeLessonObj.difficulty}/20</div>
-            <div>• Bài tiếp theo (Bài ${activeLessonObj.lessonNum + 1}): <strong class="text-indigo-600">Đã mở khóa!</strong></div>
-        `;
-
-        showScreen('result');
-        playEffect('success');
-    }
-
-    function restartCurrentLesson() {
-        if (activeLessonObj) {
-            startLesson(activeLessonObj.id);
-        }
-    }
-
-    function confirmExitRunner() {
-        stopAllAudio();
-        stopInactivityTimer();
-        if (confirm('Bạn có chắc muốn dừng bài học và quay lại danh sách bài tập?')) {
-            showScreen('catalog');
-        } else {
-            startInactivityTimer();
-        }
-    }
-
-    function changeSpeed() {
-        playEffect('click');
-        const speeds = [0.5, 0.75, 1.0, 1.25, 1.5];
-        let idx = speeds.indexOf(currentSpeed);
-        currentSpeed = speeds[(idx + 1) % speeds.length];
-        document.getElementById('speed-btn').innerText = currentSpeed + 'x';
-    }
-
-    // AI Call System Functionalities
-    function startCall() {
-        initAudioContext();
-        playEffect('ring');
-        isCalling = true;
-        document.getElementById('call-screen').classList.add('active');
-
-        const initialGreeting = `Hello! I am Lynh. Welcome to our level ${currentLevel} conversation practice. Let's begin situation 1. How are you today?`;
-        document.getElementById('transcript-box').innerHTML = `<div class="text-indigo-200">AI: "${initialGreeting}"</div>`;
-
-        setTimeout(() => {
-            speakText(initialGreeting, 'en-US', 1.0);
-        }, 500);
-
-        initSpeechRecognition();
-    }
-
-    function endCall() {
-        playEffect('click');
-        isCalling = false;
-        stopAllAudio();
-        if (speechRecognition) speechRecognition.stop();
-        document.getElementById('call-screen').classList.remove('active');
-        showScreen('dashboard');
-    }
-
-    function toggleMic() {
-        playEffect('click');
-        isMicActive = !isMicActive;
-        const btn = document.getElementById('mic-btn');
-        btn.style.background = isMicActive ? "#10B981" : "#64748B";
-        btn.innerHTML = isMicActive ? '<i class="fa-solid fa-microphone"></i>' : '<i class="fa-solid fa-microphone-slash"></i>';
-
-        if (isMicActive && speechRecognition) {
-            try { speechRecognition.start(); } catch(e){}
-        } else if (speechRecognition) {
-            speechRecognition.stop();
-        }
-    }
-
-    function getCallHint() {
-        playEffect('click');
-        const hints = [
-            "I am doing great today, thanks for asking!",
-            "I would like to practice speaking about business and work.",
-            "Could you explain that sentence again please?"
-        ];
-        const randomHint = hints[Math.floor(Math.random() * hints.length)];
-        const box = document.getElementById('transcript-box');
-        box.innerHTML += `<div class="text-amber-300 mt-1">💡 <b>Gợi ý phản xạ:</b> "${randomHint}"</div>`;
-        box.scrollTop = box.scrollHeight;
-        speakText(randomHint, 'en-US', 0.9);
-    }
-
-    function initSpeechRecognition() {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRecognition) {
-            speechRecognition = new SpeechRecognition();
-            speechRecognition.lang = 'en-US';
-            speechRecognition.continuous = false;
-            speechRecognition.interimResults = false;
-
-            speechRecognition.onresult = (event) => {
-                const userSpeech = event.results[0][0].transcript;
-                const box = document.getElementById('transcript-box');
-                box.innerHTML += `<div class="text-emerald-300 font-semibold mt-1">You: "${userSpeech}"</div>`;
-                box.scrollTop = box.scrollHeight;
-
-                setTimeout(() => {
-                    const replies = [
-                        `That's very interesting! Tell me more about "${userSpeech}".`,
-                        `Great pronunciation! Let's move to the next situation.`,
-                        `I understand your point completely. What else would you like to discuss?`
-                    ];
-                    const aiReply = replies[Math.floor(Math.random() * replies.length)];
-                    box.innerHTML += `<div class="text-indigo-200 mt-1">AI: "${aiReply}"</div>`;
-                    box.scrollTop = box.scrollHeight;
-                    speakText(aiReply, 'en-US', 1.0);
-                }, 750);
-            };
-
-            speechRecognition.onend = () => {
-                if (isCalling && isMicActive) {
-                    try { speechRecognition.start(); } catch(e){}
-                }
-            };
-
-            try { speechRecognition.start(); } catch(e){}
-        }
-    }
-
-    // Render Stats for Progress Tab
-    function renderProgressStats() {
-        let completedCount = 0;
-        const levels = ['basic', 'medium', 'advanced'];
-
-        levels.forEach(lvl => {
-            const unlocked = DATABASE[lvl].filter(l => l.isUnlocked).length;
-            const completed = DATABASE[lvl].filter(l => l.progress === 100).length;
-            completedCount += completed;
-
-            const pct = ((unlocked / 200) * 100).toFixed(1);
-            document.getElementById(`level-progress-${lvl}`).innerText = `${unlocked} / 200 bài`;
-            document.getElementById(`level-bar-${lvl}`).style.width = `${pct}%`;
-        });
-
-        document.getElementById('stats-completed-count').innerText = `${completedCount} / 600`;
-    }
-
-    // Settings & Profile Helpers
-    function updateProfileName() {
-        const val = document.getElementById('user-name-input').value.trim();
-        if (val) {
-            document.getElementById('profile-display-name').innerText = val;
-            playEffect('click');
-        }
-    }
-
-    function updateVoiceSetting() {
-        preferredVoiceLang = document.getElementById('setting-voice-accent').value;
-        currentSpeed = parseFloat(document.getElementById('setting-voice-rate').value);
-        playEffect('click');
-        speakText("Voice settings updated successfully", preferredVoiceLang, currentSpeed);
-    }
-
-    function testSystemAudio() {
-        initAudioContext();
-        playEffect('success');
-        speakText("Realtime audio system is functioning properly!", preferredVoiceLang, currentSpeed);
-    }
-
-    function resetLearningData() {
-        if (confirm('Bạn có chắc muốn đặt lại tất cả dữ liệu bài học?')) {
-            playEffect('error');
-            ['basic', 'medium', 'advanced'].forEach(lvl => {
-                DATABASE[lvl].forEach((l, idx) => {
-                    l.isUnlocked = (idx < 5);
-                    l.progress = 0;
-                    l.score = '0/20';
-                });
-            });
-            alert('Đã khôi phục cài đặt tiến độ bài học!');
-            renderProgressStats();
-        }
-    }
-
-    // Initialize App
-    document.addEventListener('DOMContentLoaded', () => {
-        renderLessonCatalog();
-    });
-
-    document.addEventListener('click', function initOnce() {
-        initAudioContext();
-        document.removeEventListener('click', initOnce);
-    }, { once: true });
-</script>
-</body>
-</html>
+        .call-screen {
+            position:
